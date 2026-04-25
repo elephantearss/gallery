@@ -1,11 +1,6 @@
 name = "gallery"
 compatibility_date = "2024-01-01"
 
-[env.production]
-routes = [
-  { pattern = "gallery.pages.dev/*", zone_name = "pages.dev" }
-]
-
 [[d1_databases]]
 binding = "DB"
 database_name = "gallery-db"

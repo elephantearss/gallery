@@ -24,12 +24,22 @@ A photo gallery application built with Vue.js frontend and Cloudflare Pages Func
 6. For local development: `npm run dev`
 7. For production: Build with `npm run build` and deploy to Cloudflare Pages
 
-## Cloudflare Pages Deployment
+## Deployment
 
+### Cloudflare Pages (Recommended)
 - **Build command**: `npm run build`
 - **Build output directory**: `dist`
 - **Root directory**: `/` (leave empty)
 - Functions will be automatically detected from the `/functions` directory
+
+### Manual Deployment
+For manual deployment to Cloudflare Pages:
+```bash
+npm run build
+npm run deploy
+```
+
+Make sure your `wrangler.toml` has the correct D1 database ID, R2 bucket name, and R2 domain configured.
 
 ## Database Schema
 
