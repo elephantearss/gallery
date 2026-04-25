@@ -3,12 +3,12 @@ compatibility_date = "2024-01-01"
 
 [[d1_databases]]
 binding = "DB"
-database_name = "gallery-db"
-database_id = "your-d1-id"
+database_name = "photos"
+database_id = "6d117125-3892-4ece-8a34-695712436e40"
 
 [[r2_buckets]]
 binding = "R2"
-bucket_name = "gallery-bucket"
+bucket_name = "photos"
 
 [vars]
-R2_DOMAIN = "your-r2-domain.r2.cloudflarestorage.com"
+R2_DOMAIN = "https://64a7f0101c6c1c24048d6228200e3b48.r2.cloudflarestorage.com/photos"
