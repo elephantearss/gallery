@@ -1,0 +1,19 @@
+name = "gallery"
+compatibility_date = "2024-01-01"
+
+[env.production]
+routes = [
+  { pattern = "gallery.pages.dev/*", zone_name = "pages.dev" }
+]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "gallery-db"
+database_id = "your-d1-id"
+
+[[r2_buckets]]
+binding = "R2"
+bucket_name = "gallery-bucket"
+
+[vars]
+R2_DOMAIN = "your-r2-domain.r2.cloudflarestorage.com"
