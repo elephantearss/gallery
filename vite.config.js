@@ -5,4 +5,3 @@ export default defineConfig({
     outDir: 'dist'
   }
 })
-<parameter name="filePath">/workspaces/gallery/vite.config.js
