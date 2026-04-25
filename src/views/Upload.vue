@@ -1,11 +1,18 @@
 <template>
-  <div>
-    <h1>Upload Photo</h1>
-    <form @submit.prevent="uploadPhoto">
-      <input type="file" @change="onFileChange" accept="image/*" required />
-      <button type="submit" :disabled="!file">Upload</button>
-    </form>
-    <p v-if="message">{{ message }}</p>
+  <div class="upload-container">
+    <h1>📤 Upload Photo</h1>
+    <div class="upload-box">
+      <form @submit.prevent="uploadPhoto" class="upload-form">
+        <label for="file-input" class="file-label">
+          <div class="upload-icon">📁</div>
+          <p>Click to select a photo or drag and drop</p>
+          <p v-if="file" class="file-name">{{ file.name }}</p>
+        </label>
+        <input id="file-input" type="file" @change="onFileChange" accept="image/*" required class="file-input" />
+        <button type="submit" :disabled="!file" class="upload-btn">Upload Photo</button>
+      </form>
+      <p v-if="message" :class="message.includes('successful') ? 'success' : 'error'">{{ message }}</p>
+    </div>
   </div>
 </template>
 

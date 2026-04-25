@@ -24,22 +24,42 @@ A photo gallery application built with Vue.js frontend and Cloudflare Pages Func
 6. For local development: `npm run dev`
 7. For production: Build with `npm run build` and deploy to Cloudflare Pages
 
-## Deployment
+## Deployment to Cloudflare Workers
 
-### Cloudflare Pages (Recommended)
-- **Build command**: `npm run build`
-- **Build output directory**: `dist`
-- **Root directory**: `/` (leave empty)
-- Functions will be automatically detected from the `/functions` directory
-
-### Manual Deployment
-For manual deployment to Cloudflare Pages:
+1. Build the app locally:
 ```bash
+npm install
 npm run build
-npm run deploy
 ```
 
-Make sure your `wrangler.toml` has the correct D1 database ID, R2 bucket name, and R2 domain configured.
+2. Deploy to Cloudflare Workers:
+```bash
+npx wrangler deploy
+```
+
+This will:
+- Build your Vue app to `dist/`
+- Upload static assets to Cloudflare KV
+- Deploy the Worker with the API functions
+
+### Configuration
+Make sure your `wrangler.toml` has:
+- `main = "src/index.js"` (entry point)
+- D1 database binding configured
+- R2 bucket binding configured
+- `[assets]` section with `directory = "dist"`
+
+### Database Setup
+Initialize the D1 database with:
+```bash
+wrangler d1 execute gallery-db --file=init-db.js --remote
+```
+
+### Default Admin Account
+- Username: admin
+- Password: adminpass
+
+Change this immediately after first login!
 
 ## Database Schema
 
