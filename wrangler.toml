@@ -25,5 +25,8 @@ database_id = "6d117125-3892-4ece-8a34-695712436e40"
 binding = "R2"
 bucket_name = "photos"
 
+[assets]
+directory = "dist"
+
 [vars]
 R2_DOMAIN = "https://64a7f0101c6c1c24048d6228200e3b48.r2.cloudflarestorage.com/photos"

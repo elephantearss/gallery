@@ -1,17 +1,32 @@
 export async function onRequest(context) {
-  // If the request is for an API route, don't intercept it
-  if (context.request.url.includes('/api/')) {
+  const url = new URL(context.request.url)
+  const pathname = url.pathname
+  
+  // API routes go to functions
+  if (pathname.startsWith('/api/')) {
     return context.next()
   }
-
-  // For all other requests, try to serve static assets first
-  const response = await context.next()
   
-  // If a static asset was found, return it
+  // Try to get static file
+  let response = await context.next()
+  
+  // If asset is found, return it
   if (response.status !== 404) {
     return response
   }
-
-  // If no static asset found, serve index.html for SPA routing
-  return context.env.ASSETS.fetch(new URL('/index.html', context.request.url))
+  
+  // For 404s (routes that don't exist), check if it could be a page route
+  // Serve index.html for Vue SPA routing
+  if (!pathname.includes('.')) {
+    try {
+      const assets = context.env.ASSETS
+      const indexFile = new Request(new URL('/index.html', context.request.url))
+      const indexResponse = await assets.fetch(indexFile)
+      return indexResponse
+    } catch (e) {
+      return response
+    }
+  }
+  
+  return response
 }
